@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BMI Calculator</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
+<style>
+body {
+height:100vh;
+}
+.units-btn {
+width:100px;
+padding:5px;
+border-radius:30px;
+border:none;
+}
+.share span {
+display:inline-block;
+margin-left:10px;
+font-size:25px;
+}
+input::placeholder {
+text-align:right;
+}
+.calculate-btn {
+background-color:rgba(211, 211, 211, 0.19);
+border:none;
+padding:10px;
+width:120px;
+border-radius:8px;
+font-weight:bold;
+}
+.footer-content {
+font-size:12px;
+color:gray;
+}
+.you-slider {
+margin-top:-10px;
+}
+.grid-card {
+display:grid;
+grid-template-columns: 4fr 8fr;
+grid-gap:30px;
+}
+samp {
+color:red;
+margin-bottom:10px;
+display:inline-block;
+
+}
+h1 {
+font-size:60px;
+font-weight:bold;
+}
+</style>
+<script type="text/javascript">
+function calculateClick() {
+document.getElementById("resultCard").style.display = "block";
+var maleRadioElement = document.getElementById("radioMale");
+var femaleRadioElement = document.getElementById("radioFemale");
+if(maleRadioElement.checked) {
+/console.log("Male Clicked");/
+var personHeight = parseInt(document.getElementById("txtHeight").value)/100;
+var personWeight = parseFloat(document.getElementById("txtWeight").value);
+var BMI = parseFloat((personWeight / personHeight ** 2)).toFixed(1);
+/console.log(BMI);/
+if(personWeight < 45) {
+document.getElementById("yourRangeSlider").style.marginLeft = "20px";
+document.getElementById("bmiWeight").innerHTML = "<b>Underweight BMI</b>";
+}
+else if(personWeight >=45 && personWeight < 61) {
+document.getElementById("yourRangeSlider").style.marginLeft = "200px";
+document.getElementById("bmiWeight").innerHTML = "<b>Normal BMI</b>";
+}
+else if(personWeight >=61 && personWeight < 73) {
+document.getElementById("yourRangeSlider").style.marginLeft = "370px";
+document.getElementById("bmiWeight").innerHTML = "<b>Overweight BMI</b>";
+}
+else if(personWeight >=73) {
+document.getElementById("yourRangeSlider").style.marginLeft = "520px";
+document.getElementById("bmiWeight").innerHTML = "<b>Obese BMI</b>";
+}
+document.getElementById("bmiValue").innerHTML = BMI;
+document.getElementById("bmiHealthy").innerHTML = `Heavy weight for the height: 45 kg - 60.6 kg`;
+
+}
+if(femaleRadioElement.checked) {
+/console.log("Female Clicked");/
+var personHeight = parseInt(document.getElementById("txtHeight").value)/100;
+var personWeight = parseFloat(document.getElementById("txtWeight").value);
+var BMI = Math.round((personWeight / personHeight ** 2));
+console.log(BMI);
+if(personWeight < 45) {
+document.getElementById("yourRangeSlider").style.marginLeft = "20px";
+document.getElementById("bmiWeight").innerHTML = "<b>Underweight BMI</b>";
+}
+else if(personWeight >=45 && personWeight < 61) {
+document.getElementById("yourRangeSlider").style.marginLeft = "200px";
+document.getElementById("bmiWeight").innerHTML = "<b>Normal BMI</b>";
+}
+else if(personWeight >=61 && personWeight < 73) {
+document.getElementById("yourRangeSlider").style.marginLeft = "370px";
+document.getElementById("bmiWeight").innerHTML = "<b>Overweight BMI</b>";
+}
+else if(personWeight >=73) {
+document.getElementById("yourRangeSlider").style.marginLeft = "520px";
+document.getElementById("bmiWeight").innerHTML = "<b>Obese BMI</b>";
+}
+document.getElementById("bmiValue").innerHTML = BMI;
+document.getElementById("bmiHealthy").innerHTML = `Heavy weight for the height: 45 kg - 60.6 kg`;
+}
+}
+</script>
+</head>
+<body class="bg-dark d-flex justify-content-center align-items-center">
+<div class="bg-light p-4 card mt-5">
+<div class="card-header d-flex justify-content-between">
+<h3>BMI Calculator</h3>
+<div class="share">
+<span class="bi bi-share"></span>
+<span class="bi bi-three-dots"></span>
+</div>
+</div>
+<div class="card-body container-fluid">
+<samp>* mark indicates required</samp>
+<div class="d-flex justify-content-between">
+<div>
+<input type="radio" class="form-check-input" name="radioBtn" id="radioMale" checked> <label class="form-check-label ms-2 me-2">Male</label>
+<input type="radio" class="form-check-input" name="radioBtn" id="radioFemale"> <label class="form-check-label ms-2">Female</label>
+</div>
+<div>
+<button class="units-btn me-2" style="background-color:white;">Imperial</button>
+<button class="units-btn text-white" style="background-color:blue;">Metric</button>
+</div>
+</div>
+<div class="row">
+<div class="col-4">
+<label class="form-check-label mb-2">Age (1 year or above) *</label>
+<input type="text" class="form-control" placeholder="years" id="txtYear">
+</div>
+</div>
+<div class="row mt-3">
+<div class="col-4">
+<label class="form-check-label mb-2">Height *</label>
+<input type="text" class="form-control" placeholder="cm" id="txtHeight">
+</div>
+<div class="col-4">
+<label class="form-check-label mb-2">Weight *</label>
+<input type="text" class="form-control" placeholder="kg" id="txtWeight">
+</div>
+</div>
+<div class="row mt-3">
+<div class="col-2">
+<button class="calculate-btn" onclick="calculateClick()">Calculate</button>
+</div>
+</div>
+
+</div>
+<div class="card-footer">
+<div class="col-12">
+<p class="footer-content">The body mass index (BMI) calculator estimates the amount of body fat a person has in relation to age, height, and weight.</p>
+</div>
+<div id="resultCard" style="display:none; background-color:white; padding:20px;">
+<div class="grid-card">
+<div>
+<h1 id="bmiValue"></h1>
+<h3 id="bmiWeight"></h3>
+<p id="bmiHealthy"></p>
+</div>
+<div>
+<div class="d-flex justify-content-around">
+<div class="mb-3 w-25 ms-4">
+UnderWeight<br>
+<span class="fw-bold">Below 45Kg</span>
+</div>
+<div class="mb-3 w-25 ms-4">
+Normal<br>
+<span class="fw-bold">45 - 61Kg</span>
+</div>
+<div class="mb-3 w-25 ms-4">
+Overweight<br>
+<span class="fw-bold">61 - 73Kg</span>
+</div>
+<div class="mb-3 w-25 ms-4">
+Obese<br>
+<span class="fw-bold">Above 73Kg</span>
+</div>
+</div>
+<div class="progress">
+<div class="progress-bar w-25 bg-dark me-1"></div>
+<div class="progress-bar w-25 bg-info me-1"></div>
+<div class="progress-bar w-25 bg-dark me-1"></div>
+<div class="progress-bar w-25 bg-dark"></div>
+</div>
+<div id="yourRangeSlider">
+<div class="bi bi-caret-down-fill fs-3"></div>
+<div class="h4 you-slider">You</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>
